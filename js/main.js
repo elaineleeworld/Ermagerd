@@ -6,7 +6,7 @@ $(function(){
 		translateWords(words);
 	});
 
-	function translateWords(words){
+	function translateWords(words) {
 
 		var words_formatted = words.split(' ').join('+');
 
@@ -19,17 +19,16 @@ $(function(){
 			url: "https://yoda.p.mashape.com/yoda?sentence=" + words_formatted
 		});
 
-		var yodaText = response.responseText;
-		console.log(yodaText);
+		response.done(function(data) {
+			var yodaText = data.responseText;
 
-		$('#text').text(yodaText);
+			console.log(response)
+			console.log("Yoda says " + response.responseText);
 
-  			// Toggle
-  			$("#input").hide();
-  			$("#translated_text").show();
-		};
+			$('#text').text(response.responseText);
+		});
 
-
+	};
 
 	// // Function to take Yoda speak to voice
 	// $("#speech").click(function() {
